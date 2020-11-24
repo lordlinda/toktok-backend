@@ -11,15 +11,16 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-//@route  POST /likePost
+//@route  POST /likes/likePost
 //@description //like a post
 //@acccess  Private
 router.post('/likePost', (req, res) => {
     //before u like an post we have to ensure u havent liked it before
     Like.findOne({ userId: req.body.userId, postId: req.body.userId })
         .then(like => {
-
-            if (like) {
+            console.log(like)
+            if (!like) {
+                
                 //post request is to add data to the database
                 //it will let us add a notifiaction doc to the database
                 Like.create(req.body)
@@ -47,7 +48,7 @@ router.post('/likePost', (req, res) => {
 
 })
 
-//@route  POST /unlikePost
+//@route  POST /likes/unlikePost
 //@description //unlike a post
 //@acccess  Private
 router.delete('/unlikePost/:id', (req, res) => {

@@ -9,10 +9,10 @@ const pusher = new Pusher({
     cluster: "ap2",
     useTLS: true
 });
+
 //@route  POST /posts
 //@description //make a post
 //@acccess  Private
-
 router.post('/', (req, res) => {
     //post request is to add data to the database
     //it will let us add a video doc to the database
@@ -43,8 +43,6 @@ router.get('/', (req, res) => {
         .catch(err => {
             res.status(500).send(err)
         })
-
-
 })
 
 
