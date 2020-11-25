@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/User')
 const Follower = require('../models/Follower')
 const Pusher = require("pusher");
+
 const pusher = new Pusher({
     appId: "1108043",
     key: "157b2bf9de51a6067ac9",
@@ -10,6 +11,7 @@ const pusher = new Pusher({
     cluster: "ap2",
     useTLS: true
 });
+
 //@route  POST /users/newUser
 //@description //create a new user
 //@acccess  Public
