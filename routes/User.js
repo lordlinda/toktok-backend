@@ -67,7 +67,7 @@ router.get("/getUser/:id", (req, res) => {
     });
 });
 
-//@route  GET /updateDetails/:id
+//@route  GET /userDetails/:id
 //@description //update user details
 //@acccess  Private
 router.patch("/userDetails/:id", (req, res) => {
