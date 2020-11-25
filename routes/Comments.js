@@ -11,7 +11,7 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-//@route  POST /comment
+//@route  POST /comments
 //@description //comment on  a post
 //@acccess  Private
 router.post('/', (req, res) => {

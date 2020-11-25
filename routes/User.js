@@ -10,10 +10,9 @@ const pusher = new Pusher({
     cluster: "ap2",
     useTLS: true
 });
-//@route  POST /newUser
+//@route  POST /users/newUser
 //@description //create a new user
 //@acccess  Public
-
 router.post('/newUser', (req, res) => {
     //before we create the user we have to ensure we dont have a user already with this email address
     User.findOne({ email: req.body.email })
@@ -38,6 +37,16 @@ router.post('/newUser', (req, res) => {
                 res.status(422).send({ err: "User already exists" })
             }
         })
+})
+router.post('/login',(req,res)=>{
+    User.findOne({email: req.body.email,password:req.body.password})
+    .select('-password')
+    .then(data => {
+        res.status(200).json({ user: data })
+    })
+    .catch(err => {
+        res.status(500).send(err)
+    })
 })
 
 //@route  GET /getUser/:id
