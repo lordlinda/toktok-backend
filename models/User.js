@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const userSchema = mongoose.Schema({
+const mongoose = require("mongoose");
+const userSchema = mongoose.Schema(
+  {
     email: String,
     password: String,
     username: String,
@@ -8,17 +9,18 @@ const userSchema = mongoose.Schema({
     phoneNumber: String,
     profilePic: String,
     following: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     followers: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     views: {
-        type: Number,
-        default: 0
-    }
-
-}, { timestamps: true })
-module.exports = mongoose.model('User', userSchema)
+      type: Number,
+      default: 0,
+    },
+  },
+  { timestamps: true }
+);
+module.exports = mongoose.model("User", userSchema);
