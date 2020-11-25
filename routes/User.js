@@ -115,7 +115,6 @@ router.patch("/follow", (req, res) => {
 });
 
 router.delete("/unfollow", (req, res) => {
-  console.log(req.body);
   Follower.deleteOne({
     userId: req.body.userId,
     followerId: req.body.followerId,
