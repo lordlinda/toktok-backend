@@ -115,13 +115,14 @@ router.patch("/follow", (req, res) => {
 });
 
 router.delete("/unfollow", (req, res) => {
+  console.log(req.body);
   Follower.deleteOne({
     userId: req.body.userId,
     followerId: req.body.followerId,
   })
     .then((user) => {
       pusher.trigger("user", "deleted", {
-        data,
+        user,
       });
       User.updateOne(
         { _id: req.body.userId },
@@ -136,6 +137,7 @@ router.delete("/unfollow", (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send(err);
     });
 });
