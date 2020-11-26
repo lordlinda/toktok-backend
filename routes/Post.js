@@ -36,7 +36,7 @@ router.get("/", (req, res) => {
   //it will let us add a video doc to the database
   Post.find({})
     .then((data) => {
-      res.status(200).json({ data });
+      res.status(200).json({ posts: data });
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -47,7 +47,9 @@ router.get("/", (req, res) => {
 //@description //get a post
 //@acccess  Private
 router.get("/:id", (req, res) => {
-  Post.find({ _id: req.params.id })
+  //post request is to add data to the database
+  //it will let us add a video doc to the database
+  Post.find({})
     .then((data) => {
       res.status(200).json({ data });
     })
