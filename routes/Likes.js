@@ -10,7 +10,6 @@ router.post("/likePost", (req, res) => {
   //before u like an post we have to ensure u havent liked it before
   Like.findOne({ userId: req.body.userId, postId: req.body.userId }).then(
     (like) => {
-      console.log(like);
       if (like === null) {
         //post request is to add data to the database
         //it will let us add a notifiaction doc to the database
@@ -39,17 +38,17 @@ router.post("/likePost", (req, res) => {
 //@route  POST /likes/unlikePost
 //@description //unlike a post
 //@acccess  Private
-router.delete("/unlikePost/:id", (req, res) => {
-  console.log(req.body);
+router.patch("/unlikePost/:id", (req, res) => {
   //post request is to add data to the database
   Like.deleteOne({ _id: req.params.id })
     .then((data) => {
-      Post.findByIdAndUpdate(
-        { _id: req.body.postId },
-        { $inc: { likes: -1 } }
-      ).then((post) => {
-        res.status(200).json({ msg: "Post count reduced" });
-      });
+      Post.findByIdAndUpdate({ _id: req.body.postId }, { $inc: { likes: -1 } })
+        .then((post) => {
+          res.status(200).json({ msg: "Post count reduced" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       res.status(500).send(err);
