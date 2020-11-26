@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   //post request is to add data to the database
   //it will let us add a video doc to the database
-  Post.find({})
+  Post.find({ _id: req.params.id })
     .then((data) => {
       res.status(200).json({ data });
     })
