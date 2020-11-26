@@ -11,7 +11,7 @@ router.post("/likePost", (req, res) => {
   Like.findOne({ userId: req.body.userId, postId: req.body.userId }).then(
     (like) => {
       console.log(like);
-      if (like === "null") {
+      if (like === null) {
         //post request is to add data to the database
         //it will let us add a notifiaction doc to the database
         Like.create(req.body)
