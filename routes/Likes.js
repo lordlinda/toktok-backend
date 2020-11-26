@@ -11,7 +11,7 @@ router.post("/likePost", (req, res) => {
   Like.findOne({ userId: req.body.userId, postId: req.body.userId }).then(
     (like) => {
       console.log(like);
-      if (!like) {
+      if (like === "null") {
         //post request is to add data to the database
         //it will let us add a notifiaction doc to the database
         Like.create(req.body)
@@ -20,9 +20,6 @@ router.post("/likePost", (req, res) => {
               { _id: req.body.postId },
               { $inc: { likes: 1 } }
             ).then((post) => {
-              pusher.trigger("like", "created", {
-                data,
-              });
               res.status(200).json({
                 msg: "Post count increased",
                 data,
@@ -51,9 +48,6 @@ router.delete("/unlikePost/:id", (req, res) => {
         { _id: req.body.postId },
         { $inc: { likes: -1 } }
       ).then((post) => {
-        pusher.trigger("like", "deleted", {
-          data,
-        });
         res.status(200).json({ msg: "Post count reduced" });
       });
     })
