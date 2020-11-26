@@ -40,6 +40,7 @@ router.post("/", (req, res) => {
 //@acccess  Private
 router.get("/", (req, res) => {
   Comment.find({})
+    .sort({ createdAt: -1 })
     .then((data) => {
       res.status(200).json({ data });
     })

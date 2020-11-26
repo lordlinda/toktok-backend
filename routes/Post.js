@@ -35,6 +35,7 @@ router.get("/", (req, res) => {
   //post request is to add data to the database
   //it will let us add a video doc to the database
   Post.find({})
+    .sort({ createdAt: -1 })
     .then((data) => {
       res.status(200).json({ posts: data });
     })
